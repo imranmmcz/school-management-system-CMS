@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পাঠশালা ই-ম্যানেজার - স্কুল ম্যানেজমেন্ট সিস্টেম</title>
+    
+    <!-- Google Fonts for Bengali -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- SortableJS for Drag & Drop -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navigation.css">
+</head>
+<body>
+    <!-- ==================== PUBLIC LANDING PAGE ==================== -->
+    <div id="public-view">
+        <!-- Main Navbar -->
+        <nav class="main-navbar">
+            <div class="navbar-container">
+                <!-- Logo Section -->
+                <a href="index.html" class="navbar-logo">
+                    <img id="school-logo" src="assets/logo.png" alt="স্কুল লোগো">
+                    <div class="school-name">
+                        <span id="header-school-name">পাঠশালা ই-ম্যানেজার</span>
+                        <span id="header-school-tagline">আমাদের স্কুল, আমাদের গর্ব</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <ul class="navbar-menu" id="navbar-menu">
+                    <li><a href="index.html" class="navbar-link active"><i class="fas fa-home"></i> হোম</a></li>
+                    <li><a href="amra-somproshe.html" class="navbar-link"><i class="fas fa-users"></i> আমরা সম্পর্কে</a></li>
+                    <li><a href="#features" class="navbar-link"><i class="fas fa-star"></i> ফিচার্স</a></li>
+                    <li><a href="#gallery" class="navbar-link"><i class="fas fa-images"></i> গ্যালারি</a></li>
+                    <li><a href="#notices" class="navbar-link"><i class="fas fa-bullhorn"></i> নোটিশ</a></li>
+                    <li><a href="contact.html" class="navbar-link"><i class="fas fa-envelope"></i> যোগাযোগ</a></li>
+                    <li>
+                        <a href="admin/admin-dashboard.html" class="navbar-link navbar-btn-login">
+                            <i class="fas fa-user-shield"></i> অ্যাডমিন লগইন
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Mobile Toggle Button -->
+                <button class="navbar-toggle" id="navbar-toggle" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="navbar-overlay" id="navbar-overlay" onclick="toggleMobileMenu()"></div>
+
+        <!-- Main Content -->
+        <main id="landing-content">
+            <!-- Content sections will be rendered dynamically -->
+        </main>
+
+        <!-- Footer -->
+        <footer id="main-footer">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>পাঠশালা ই-ম্যানেজার</h3>
+                    <p>আমরা শিক্ষার্থীদের উজ্জ্বল ভবিষ্যত গড়তে প্রতিশ্রুতিবদ্ধ।</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>দ্রুত লিংক</h3>
+                    <ul>
+                        <li><a href="#about">আমাদের সম্পর্কে</a></li>
+                        <li><a href="#notices">নোটিশ বোর্ড</a></li>
+                        <li><a href="#gallery">গ্যালারি</a></li>
+                        <li><a href="#contact">যোগাযোগ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>যোগাযোগ</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <span id="footer-address">১২৩, শিক্ষা রোড, ঢাকা-১০০০</span></p>
+                    <p><i class="fas fa-phone"></i> <span id="footer-phone">+৮৮০১২৩৪৫৬৭৮৯০</span></p>
+                    <p><i class="fas fa-envelope"></i> <span id="footer-email">info@pathshala.edu.bd</span></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; ২০২৫ পাঠশালা ই-ম্যানেজার। সর্বস্বত্ব সংরক্ষিত।</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ==================== ADMIN CMS PANEL ==================== -->
+    <div id="admin-view" class="admin-view hidden">
+        <!-- Admin Sidebar -->
+        <aside id="admin-sidebar" class="admin-sidebar">
+            <div class="sidebar-header">
+                <img src="assets/logo.png" alt="Admin Logo">
+                <h3>অ্যাডমিন প্যানেল</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active" data-section="dashboard">
+                        <a href="#dashboard"><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</a>
+                    </li>
+                    <li data-section="students">
+                        <a href="#students"><i class="fas fa-user-graduate"></i> শিক্ষার্থী</a>
+                    </li>
+                    <li data-section="teachers">
+                        <a href="#teachers"><i class="fas fa-chalkboard-teacher"></i> শিক্ষক</a>
+                    </li>
+                    <li data-section="attendance">
+                        <a href="#attendance"><i class="fas fa-calendar-check"></i> উপস্থিতি</a>
+                    </li>
+                    <li data-section="fees">
+                        <a href="#fees"><i class="fas fa-money-bill-wave"></i> ফি ম্যানেজমেন্ট</a>
+                    </li>
+                    <li data-section="exams">
+                        <a href="#exams"><i class="fas fa-clipboard-list"></i> পরীক্ষা ও ফলাফল</a>
+                    </li>
+                    <li data-section="payments">
+                        <a href="#payments"><i class="fas fa-credit-card"></i> অনলাইন পেমেন্ট</a>
+                    </li>
+                    <li data-section="notifications">
+                        <a href="#notifications"><i class="fas fa-bell"></i> নোটিফিকেশন</a>
+                    </li>
+                    <li data-section="menu-manager">
+                        <a href="#menu-manager"><i class="fas fa-bars"></i> মেনু ম্যানেজার</a>
+                    </li>
+                    <li data-section="page-builder">
+                        <a href="#page-builder"><i class="fas fa-puzzle-piece"></i> পেজ বিল্ডার</a>
+                    </li>
+                    <li data-section="content-editor">
+                        <a href="#content-editor"><i class="fas fa-edit"></i> কন্টেন্ট এডিটর</a>
+                    </li>
+                    <li data-section="landing-settings">
+                        <a href="#landing-settings"><i class="fas fa-cogs"></i> ল্যান্ডিং সেটিংস</a>
+                    </li>
+                    <li data-section="full-menu">
+                        <a href="#full-menu"><i class="fas fa-th-large"></i> সম্পূর্ণ মেনু</a>
+                    </li>
+                    <li data-section="preview">
+                        <a href="#preview"><i class="fas fa-eye"></i> সাইট প্রিভিউ</a>
+                    </li>
+                    <li onclick="logoutAdmin()">
+                        <a href="#"><i class="fas fa-sign-out-alt"></i> লগআউট</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Admin Main Content -->
+        <main id="admin-main">
+            <!-- Top Bar -->
+            <div class="admin-topbar">
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="breadcrumb">
+                    <span>অ্যাডমিন প্যানেল</span> / <span id="current-section-title">ড্যাশবোর্ড</span>
+                </div>
+                <div class="admin-actions">
+                    <button class="btn-view-site" onclick="viewSite()">
+                        <i class="fas fa-external-link-alt"></i> সাইট দেখুন
+                    </button>
+                    <div class="admin-profile">
+                        <i class="fas fa-user-circle"></i> অ্যাডমিন
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="admin-section active">
+                <div class="section-header">
+                    <h2><i class="fas fa-tachometer-alt"></i> ড্যাশবোর্ড</h2>
+                    <p>স্কুল ম্যানেজমেন্ট সিস্টেমের সারসংক্ষেপ</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>মোট শিক্ষার্থী</h3>
+                            <p class="stat-number" id="total-students-count">০</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>মোট শিক্ষক</h3>
+                            <p class="stat-number" id="total-teachers-count">০</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon orange">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>আজকের ফি কালেকশন</h3>
+                            <p class="stat-number" id="today-fees-count">৳০</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>আজকের উপস্থিতি</h3>
+                            <p class="stat-number" id="today-attendance-pct">০%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-widgets">
+                    <div class="widget">
+                        <h3><i class="fas fa-bell"></i> সাম্প্রতিক নোটিশ</h3>
+                        <ul class="notice-list" id="dashboard-notices">
+                            <li>
+                                <span class="notice-date">১৩ জানুয়ারি, ২০২৫</span>
+                                <p>মাসিক পরীক্ষার সময়সূচি প্রকাশ</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="widget">
+                        <h3><i class="fas fa-money-bill-alt"></i> সাম্প্রতিক লেনদেন</h3>
+                        <ul class="activity-list" id="recent-transactions">
+                            <li>
+                                <i class="fas fa-plus-circle text-success"></i>
+                                <span>কোনো লেনদেন নেই</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== শিক্ষার্থী ম্যানেজমেন্ট ==================== -->
+            <section id="students-section" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-graduate"></i> শিক্ষার্থী ব্যবস্থাপনা</h2>
+                    <p>শিক্ষার্থীদের তালিকা এবং ব্যবস্থাপনা করুন</p>
+                </div>
+                
+                <div class="module-toolbar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="student-search" placeholder="শিক্ষার্থী খুঁজুন..." onkeyup="searchStudents()">
+                    </div>
+                    <div class="filter-group">
+                        <select id="student-class-filter" onchange="filterStudentsByClass()">
+                            <option value="">সব শ্রেণি</option>
+                            <option value="৬ষ্ঠ">৬ষ্ঠ শ্রেণি</option>
+                            <option value="৭ম">৭ম শ্রেণি</option>
+                            <option value="৮ম">৮ম শ্রেণি</option>
+                            <option value="৯ম">৯ম শ্রেণি</option>
+                            <option value="১০ম">১০ম শ্রেণি</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary" onclick="showAddStudentModal()">
+                        <i class="fas fa-plus"></i> নতুন শিক্ষার্থী যোগ করুন
+                    </button>
+                </div>
+
+                <div class="data-table-container">
+                    <table class="data-table" id="students-table">
+                        <thead>
+                            <tr>
+                                <th>ছবি</th>
+                                <th>নাম</th>
+                                <th>রোল</th>
+                                <th>শ্রেণি</th>
+                                <th>মোবাইল</th>
+                                <th>অভিভাবক</th>
+                                <th>অ্যাকশন</th>
+                            </tr>
+                        </thead>
+                        <tbody id="students-table-body">
+                            <!-- Students will be rendered here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ==================== শিক্ষক ম্যানেজমেন্ট ==================== -->
+            <section id="teachers-section" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-chalkboard-teacher"></i> শিক্ষক ব্যবস্থাপনা</h2>
+                    <p>শিক্ষকদের তালিকা এবং ব্যবস্থাপনা করুন</p>
+                </div>
+                
+                <div class="module-toolbar">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="teacher-search" placeholder="শিক্ষক খুঁজুন..." onkeyup="searchTeachers()">
+                    </div>
+                    <button class="btn-primary" onclick="showAddTeacherModal()">
+                        <i class="fas fa-plus"></i> নতুন শিক্ষক যোগ করুন
+                    </button>
+                </div>
+
+                <div class="teachers-grid" id="teachers-grid">
+                    <!-- Teachers will be rendered here -->
+                </div>
+            </section>
+
+            <!-- ==================== উপস্থিতি সিস্টেম ==================== -->
+            <section id="attendance-section" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-calendar-check"></i> উপস্থিতি ব্যবস্থাপনা</h2>
+                    <p>শিক্ষার্থী এবং শিক্ষকদের উপস্থিতি রেকর্ড করুন</p>
+                </div>
+                
+                <div class="attendance-controls">
+                    <div class="control-group">
+                        <label>উপস্থিতির ধরন</label>
+                        <select id="attendance-type" onchange="changeAttendanceType()">
+                            <option value="student">শিক্ষার্থী উপস্থিতি</option>
+                            <option value="teacher">শিক্ষক উপস্থিতি</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>তারিখ</label>
+                        <input type="date" id="attendance-date" onchange="loadAttendanceData()">
+                    </div>
+                    <div class="control-group" id="class-select-group">
+                        <label>শ্রেণি নির্বাচন করুন</label>
+                        <select id="attendance-class" onchange="loadAttendanceData()">
+                            <option value="৬ষ্ঠ">৬ষ্ঠ শ্রেণি</option>
+                            <option value="৭ম">৭ম শ্রেণি</option>
+                            <option value="৮ম">৮ম শ্রেণি</option>
+                            <option value="৯ম">৯ম শ্রেণি</option>
+                            <option value="১০ম">১০ম শ্রেণি</option>
+                        </select>
+                    </div>
+                    <button class="btn-success" onclick="saveAttendance()">
+                        <i class="fas fa-save"></i> উপস্থিতি সেভ করুন
+                    </button>
+                </div>
+
+                <div class="attendance-list" id="attendance-list">
+                    <!-- Attendance items will be rendered here -->
+                </div>
+
+                <div class="attendance-report-section">
+                    <h3><i class="fas fa-chart-bar"></i> উপস্থিতি রিপোর্ট</h3>
+                    <div class="report-controls">
+                        <select id="report-type" onchange="generateAttendanceReport()">
+                            <option value="daily">দৈনিক রিপোর্ট</option>
+                            <option value="monthly">মাসিক রিপোর্ট</option>
+                        </select>
+                        <select id="report-class" onchange="generateAttendanceReport()">
+                            <option value="">সব শ্রেণি</option>
+                            <option value="৬ষ্ঠ">৬ষ্ঠ শ্রেণি</option>
+                            <option value="৭ম">৭ম শ্রেণি</option>
+                            <option value="৮ম">৮ম শ্রেণি</option>
+                            <option value="৯ম">৯ম শ্রেণি</option>
+                            <option value="১০ম">১০ম শ্রেণি</option>
+                        </select>
+                    </div>
+                    <div id="attendance-report-content" class="report-content">
+                        <p class="empty-state">তারিখ এবং শ্রেণি নির্বাচন করে রিপোর্ট দেখুন</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== ফি ম্যানেজমেন্ট ==================== -->
+            <section id="fees-section" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-money-bill-wave"></i> ফি ম্যানেজমেন্ট</h2>
+                    <p>স্কুল ফি কালেকশন এবং ব্যবস্থাপনা করুন</p>
+                </div>
+                
+                <div class="fee-tabs">
+                    <button class="fee-tab active" data-fee-tab="fee-collection" onclick="switchFeeTab('fee-collection')">ফি কালেকশন</button>
+                    <button class="fee-tab" data-fee-tab="fee-setup" onclick="switchFeeTab('fee-setup')">ফি সেটআপ</button>
+                    <button class="fee-tab" data-fee-tab="fee-reports" onclick="switchFeeTab('fee-reports')">ফি রিপোর্ট</button>
+                    <button class="fee-tab" data-fee-tab="due-fees" onclick="switchFeeTab('due-fees')">বকেয়া ফি</button>
+                </div>
+
+                <!-- Fee Collection Tab -->
+                <div id="fee-collection" class="fee-tab-content active">
+                    <div class="fee-collection-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>শিক্ষার্থী নির্বাচন করুন</label>
+                                <select id="fee-student-select" onchange="loadStudentFees()">
+                                    <option value="">শিক্ষার্থী নির্বাচন করুন</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>ফি ধরন</label>
+                                <select id="fee-type-select">
+                                    <option value="monthly">মাসিক ফি</option>
+                                    <option value="exam">পরীক্ষার ফি</option>
+                                    <option value="admission">ভর্তি ফি</option>
+                                    <option value="library">লাইব্রেরি ফি</option>
+                                    <option value="transport">পরিবহন ফি</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>মাস/সময়কাল</label>
+                                <input type="text" id="fee-month" placeholder="যেমন: জানুয়ারি ২০২৫">
+                            </div>
+                            <div class="form-group">
+                                <label>টাকা (৳)</label>
+                                <input type="number" id="fee-amount" placeholder="ফি এমাউন্ট">
+                            </div>
+                        </div>
+                        <button class="btn-primary" onclick="collectFee()">
+                            <i class="fas fa-money-bill-alt"></i> ফি কালেকশন করুন
+                        </button>
+                    </div>
+                    
+                    <h3>সাম্প্রতিক লেনদেন</h3>
+                    <div class="data-table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>তারিখ</th>
+                                    <th>শিক্ষার্থী</th>
+                                    <th>ফি ধরন</th>
+                                    <th>এমাউন্ট</th>
+                                    <th>পেমেন্ট মেথড</th>
+                                    <th>স্ট্যাটাস</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactions-table-body">
+                                <!-- Transactions will be rendered here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Fee Setup Tab -->
+                <div id="fee-setup" class="fee-tab-content">
+                    <div class="fee-structure-form">
+                        <h3>ফি স্ট্রাকচার সেটআপ</h3>
+                        <form id="fee-structure-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>ফি নাম</label>
+                                    <input type="text" id="fee-name" placeholder="ফি এর নাম">
+                                </div>
+                                <div class="form-group">
+                                    <label>শ্রেণি</label>
+                                    <select id="fee-class">
+                                        <option value="all">সব শ্রেণি</option>
+                                        <option value="৬ষ্ঠ">৬ষ্ঠ শ্রেণি</option>
+                                        <option value="৭ম">৭ম শ্রেণি</option>
+                                        <option value="৮ম">৮ম শ্রেণি</option>
+                                        <option value="৯ম">৯ম শ্রেণি</option>
+                                        <option value="১০ম">১০ম শ্রেণি</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>এমাউন্ট (৳)</label>
+                                    <input type="number" id="fee-structure-amount" placeholder="১০০০">
+                                </div>
+                                <div class="form-group">
+                                    <label>ডিউডেট</label>
+                                    <input type="date" id="fee-due-date">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-plus"></i> ফি স্ট্রাকচার যোগ করুন
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div id="fee-structures-list">
+                        <!-- Fee structures will be rendered here -->
+                    </div>
+                </div>
+
+                <!-- Fee Reports Tab -->
+                <div id="fee-reports" class="fee-tab-content">
+                    <div class="fee-report-controls">
+                        <div class="control-group">
+                            <label>রিপোর্ট ধরন</label>
+                            <select id="fee-report-type" onchange="generateFeeReport()">
+                                <option value="daily">দৈনিক</option>
+                                <option value="monthly">মাসিক</option>
+                                <option value="yearly">বার্ষিক</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label>তারিখ</label>
+                            <input type="date" id="fee-report-date" onchange="generateFeeReport()">
+                        </div>
+                    </div>
+                    <div id="fee-report-content" class="report-content">
+                        <div class="report-summary">
+                            <div class="summary-card">
+                                <h4>মোট কালেকশন</h4>
+                                <p class="amount">৳<span id="total-collection">০</span></p>
+                            </div>
+                            <div class="summary-card">
+                                <h4>মোট লেনদেন</h4>
+                                <p class="count"><span id="total-transactions">০</span>টি</p>
+                            </div>
+                            <div class="summary-card">
+                                <h4>গড় লেনদেন</h4>
+                                <p class="amount">৳<span id="avg-transaction">০</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Due Fees Tab -->
+                <div id="due-fees" class="fee-tab-content">
+                    <h3>বকেয়া ফি তালিকা</h3>
+                    <div class="data-table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>শিক্ষার্থী</th>
+                                    <th>শ্রেণি</th>
+                                    <th>ফি ধরন</th>
+                                    <th>পরিমাণ</th>
+                                    <th>ডিউডেট</th>
+                                    <th>অ্যাকশন</th>
+                                </tr>
+                            </thead>
+                            <tbody id="due-fees-table-body">
+                                <!-- Due fees will be rendered here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== পরীক্ষা ও ফলাফল ==================== -->
+            <section id="exams-section" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-clipboard-list"></i> পরীক্ষা ও ফলাফল</h2>
+                    <p>পরীক্ষা পরিচালনা এবং ফলাফল প্রকাশ করুন</p>
+                </div>
+                
+                <div class="exam-tabs">
+                    <button class="exam-tab active" data-exam-tab="exam-schedule" onclick="switchExamTab('exam-schedule')">পরীক্ষার সময়সূচি</button>
+                    <button class="exam-tab" data-exam-tab="marks-entry" onclick="switchExamTab('marks-entry')">নম্বর এন্ট্রি</button>
+                    <button class="exam-tab" data-exam-tab="results" onclick="switchExamTab('results')">ফলাফল</button>
+                    <button class="exam-tab" data-exam-tab="grade-settings" onclick="switchExamTab('grade-settings')">গ্রেড সেটিং</button>
+                </div>
+
+                <!-- Exam Schedule Tab -->
+                <div id="exam-schedule" class="exam-tab-content active">
+                    <div class="exam-schedule-form">
+                        <h3>নতুন পরীক্ষা যোগ করুন</h3>
+                        <form id="exam-schedule-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>পরীক্ষার নাম</label>
+                                    <input type="text" id="exam-name" placeholder="যেমন: মাসিক পরীক্ষা - জানুয়ারি">
+                                </div>
+                                <div class="form-group">
+                                    <label>শ্রেণি</label>
+                                    <select id="exam-class">
+                                        <option value="৬ষ্ঠ">৬ষ্ঠ শ্রেণি</option>
+                                        <option value="৭ম">৭ম শ্রেণি</option>
+                                        <option value="৮ম">৮ম শ্রেণি</option>
+                                        <option value="৯ম">৯ম শ্রেণি</option>
+                                        <option value="১০ম">১০ম শ্রেণি</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>পরীক্ষা শুরুর তারিখ</label>
+                                    <input type="date" id="exam-start-date">
+                                </div>
+                                <div class="form-group">
+                                    <label>পরীক্ষা শেষের তারিখ</label>
+                                    <input type="date" id="exam-end-date">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-plus"></i> পরীক্ষা যোগ করুন
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <h3>পরীক্ষার তালিকা</h3>
+                    <div class="data-table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>পরীক্ষার নাম</th>
+                                    <th>শ্রেণি</th>
+                                    <th>শুরু</th>
+                                    <th>শেষ</th>
+                                    <th>স্ট্যাটাস</th>
+                                    <th>অ্যাকশন</th>
+                                </tr>
+                            </thead>
+                            <tbody id="exams-table-body">
+                                <!-- Exams will be rendered here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Marks Entry Tab -->
+                <div id="marks-entry" class="exam-tab-content">
+                    <div class="marks-entry-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>পরীক্ষা নির্বাচন করুন</label>
+                                <select id="marks-exam-select" onchange="loadExamStudents()">
+                                    <option value="">পরীক্ষা নির্বাচন করুন</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>বিষয়</label>
+                                <select id="marks-subject">
+                                    <option value="বাংলা">বাংলা</option>
+                                    <option value="ইংরেজি">ইংরেজি</option>
+                                    <option value="গণিত">গণিত</option>
+                                    <option value="বিজ্ঞান">বিজ্ঞান</option>
+                                    <option value="সামাজিক বিজ্ঞান">সামাজিক বিজ্ঞান</option>
+                                    <option value="ধর্ম">ধর্ম</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="marks-entry-table">
+                        <p class="empty-state">পরীক্ষা নির্বাচন করে নম্বর এন্ট্রি করুন</p>
+                    </div>
+                    <button class="btn-success" id="save-marks-btn" style="display:none;" onclick="saveMarks()">
+                        <i class="fas fa-save"></i> নম্বর সেভ করুন
+                    </button>
+                </div>
+
+                <!-- Results Tab -->
+                <div id="results" class="exam-tab-content">
+                    <div class="result-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>পরীক্ষা</label>
+                                <select id="result-exam-select" onchange="loadResults()">
+                                    <option value="">পরীক্ষা নির্বাচন করুন</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>শ্রেণি</label>
+                                <select id="result-class-select" onchange="loadResults()">
+                                    <option value="৬ষ্ঠ">৬ষ্ঠ শ্রেণি</option>
+                                    <option value="৭ম">৭ম শ্রেণি</option>
+                                    <option value="৮ম">৮ম শ্রেণি</option>
+                                    <option value="৯ম">৯ম শ্রেণি</option>
+                                    <option value="১০ম">১০ম শ্রেণি</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn-primary" onclick="generateResults()">
+                            <i class="fas fa-calculator"></i> ফলাফল তৈরি করুন
+                        </button>
+                    </div>
+                    
+                    <div id="results-content">
+                        <p class="empty-state">ফলাফল দেখতে পরীক্ষা এবং শ্রেণি নির্বাচন করুন</p>
+                    </div>
+                </div>
+
+                <!-- Grade Settings Tab -->
+                <div id="grade-settings" class="exam-tab-content">
+                    <div class="grade-settings-form">
+                        <h3>গ্রেড সেটিংস</h3>
+                        <form id="grade-form">
+                            <div class="grade-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>মার্কস রেঞ্জ</th>
+                                            <th>গ্রেড</th>
+                                            <th>জিপিএ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>৮০-১০০</td>
+                                            <td><input type="text" value="A+" readonly></td>
+                                            <td><input type="number" value="5.00" step="0.01"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>৭০-৭৯</td>
+                                            <td><input type="text" value="A" readonly></td>
+                                            <td><input type="number" value="4.00" step="0.01"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>৬০-৬৯</td>
+                                            <td><input type="text" value="A-" readonly></td>
+                                            <td><input type="number" value="3.50" step="0.01"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>৫০-৫৯</td>
+                                            <td><input type="text" value="B" readonly></td>
+                                            <td><input type="number" value="3.00" step="0.01"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>৪০-৪৯</td>
+                                            <td><input type="text" value="C" readonly></td>
+                                            <td><input type="number" value="2.00" step="0.01"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>৩৩-৩৯</td>
+                                            <td><input type="text" value="D" readonly></td>
+                                            <td><input type="number" value="1.00" step="0.01"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>০-৩২</td>
+                                            <td><input type="text" value="F" readonly></td>
+                                            <td><input type="number" value="0.00" step="0.01"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-save"></i> গ্রেড সেটিংস সেভ করুন
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== অনলাইন পেমেন্ট ==================== -->
+            <section id="payments-section" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-credit-card"></i> অনলাইন পেমেন্ট</h2>
+                    <p>পেমেন্ট গেটওয়ে এবং লেনদেন পরিচালনা করুন</p>
+                </div>
+                
+                <div class="payment-gateways">
+                    <h3>পেমেন্ট গেটওয়ে</h3>
+                    <div class="gateway-list">
+                        <div class="gateway-item active">
+                            <img src="https://www.bkash.com/logo.png" alt="bKash" onerror="this.src='https://via.placeholder.com/60x30?text=bKash'">
+                            <span>bKash</span>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="gateway-item active">
+                            <img src="https://nagad.com.bd/logo.png" alt="Nagad" onerror="this.src='https://via.placeholder.com/60x30?text=Nagad'">
+                            <span>Nagad</span>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="gateway-item">
+                            <img src="https://www.dutchbanglabank.com/logo.png" alt="Rocket" onerror="this.src='https://via.placeholder.com/60x30?text=Rocket'">
+                            <span>Rocket</span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="gateway-item">
+                            <img src="https://www.citybank.com.bd/logo.png" alt="City Touch" onerror="this.src='https://via.placeholder.com/60x30?text=Card'">
+                            <span>কার্ড পেমেন্ট</span>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pending-payments">
+                    <h3>পেন্ডিং পেমেন্ট</h3>
+                    <div class="data-table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>শিক্ষার্থী</th>
+                                    <th>ফি ধরন</th>
+                                    <th>পরিমাণ</th>
+                                    <th>তারিখ</th>
+                                    <th>অ্যাকশন</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pending-payments-body">
+                                <!-- Pending payments will be rendered here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="transaction-history">
+                    <h3>লেনদেন ইতিহাস</h3>
+                    <div class="transaction-filters">
+                        <input type="date" id="transaction-date-filter" onchange="filterTransactions()">
+                        <select id="transaction-status-filter" onchange="filterTransactions()">
+                            <option value="">সব স্ট্যাটাস</option>
+                            <option value="success">সফল</option>
+                            <option value="pending">পেন্ডিং</option>
+                            <option value="failed">ব্যর্থ</option>
+                        </select>
+                    </div>
+                    <div class="data-table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ট্রানজ্যাকশন আইডি</th>
+                                    <th>শিক্ষার্থী</th>
+                                    <th>গেটওয়ে</th>
+                                    <th>পরিমাণ</th>
+                                    <th>তারিখ</th>
+                                    <th>স্ট্যাটাস</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transaction-history-body">
+                                <!-- Transaction history will be rendered here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== নোটিফিকেশন ==================== -->
+            <section id="notifications-section" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-bell"></i> নোটিফিকেশন</h2>
+                    <p>SMS, Email এবং WhatsApp নোটিফিকেশন পাঠান</p>
+                </div>
+                
+                <div class="notification-composer">
+                    <h3>নোটিফিকেশন কম্পোজার</h3>
+                    <form id="notification-form">
+                        <div class="form-group">
+                            <label>রিসিভার নির্বাচন করুন</label>
+                            <div class="receiver-options">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="notify-all-students" onchange="updateRecipientCount()">
+                                    সব শিক্ষার্থী
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="notify-all-teachers" onchange="updateRecipientCount()">
+                                    সব শিক্ষক
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="notify-specific-class" onchange="updateRecipientCount()">
+                                    নির্দিষ্ট শ্রেণি
+                                </label>
+                            </div>
+                            <select id="notify-class-select" style="margin-top: 10px; display: none;">
+                                <option value="৬ষ্ঠ">৬ষ্ঠ শ্রেণি</option>
+                                <option value="৭ম">৭ম শ্রেণি</option>
+                                <option value="৮ম">৮ম শ্রেণি</option>
+                                <option value="৯ম">৯ম শ্রেণি</option>
+                                <option value="১০ম">১০ম শ্রেণি</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>মেসেজ টাইপ</label>
+                            <div class="message-type-options">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="msg-sms" checked>
+                                    <i class="fas fa-sms"></i> SMS
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="msg-email" checked>
+                                    <i class="fas fa-envelope"></i> Email
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="msg-whatsapp" checked>
+                                    <i class="fab fa-whatsapp"></i> WhatsApp
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>মেসেজ</label>
+                            <textarea id="notification-message" rows="5" placeholder="আপনার মেসেজ লিখুন..."></textarea>
+                            <p class="char-count">বর্ণ: <span id="char-count">০</span></p>
+                        </div>
+                        
+                        <div class="recipient-count">
+                            <p>মোট রিসিভার: <span id="total-recipients">০</span> জন</p>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i> নোটিফিকেশন পাঠান
+                        </button>
+                    </form>
+                </div>
+
+                <div class="notification-history">
+                    <h3>নোটিফিকেশন ইতিহাস</h3>
+                    <div id="notification-history-list">
+                        <p class="empty-state">কোনো নোটিফিকেশন পাঠানো হয়নি</p>
+                    </div>
+                </div>
+
+                <div class="notification-templates">
+                    <h3>টেমপ্লেট</h3>
+                    <div class="template-list">
+                        <div class="template-item" onclick="useTemplate('exam')">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>পরীক্ষার নোটিফিকেশন</span>
+                        </div>
+                        <div class="template-item" onclick="useTemplate('fee')">
+                            <i class="fas fa-money-bill-alt"></i>
+                            <span>ফি নোটিফিকেশন</span>
+                        </div>
+                        <div class="template-item" onclick="useTemplate('event')">
+                            <i class="fas fa-calendar-star"></i>
+                            <span>ইভেন্ট নোটিফিকেশন</span>
+                        </div>
+                        <div class="template-item" onclick="useTemplate('result')">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>ফলাফল নোটিফিকেশন</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Menu Manager Section (existing) -->
+            <section id="menu-manager-section" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-bars"></i> মেনু ম্যানেজার</h2>
+                    <p>ওয়েবসাইট মেনু পরিচালনা করুন</p>
+                </div>
+                <div class="menu-manager-container">
+                    <div class="menu-preview">
+                        <h3>বর্তমান মেনু</h3>
+                        <ul id="admin-menu-list" class="draggable-menu"></ul>
+                    </div>
+                    <div class="menu-editor">
+                        <h3>নতুন মেনু আইটেম যোগ করুন</h3>
+                        <form id="add-menu-form">
+                            <div class="form-group">
+                                <label>আইটেম নাম</label>
+                                <input type="text" id="menu-item-name" placeholder="যেমন: আমাদের সম্পর্কে" required>
+                            </div>
+                            <div class="form-group">
+                                <label>লিংক/অ্যাংকর</label>
+                                <input type="text" id="menu-item-link" placeholder="যেমন: #about" required>
+                            </div>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-plus"></i> মেনু আইটেম যোগ করুন
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn-success" onclick="saveMenuOrder()">
+                        <i class="fas fa-save"></i> সমস্ত পরিবর্তন সেভ করুন
+                    </button>
+                </div>
+            </section>
+
+            <!-- Page Builder Section (existing) -->
+            <section id="page-builder-section" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-puzzle-piece"></i> পেজ বিল্ডার</h2>
+                    <p>ল্যান্ডিং পেজের সেকশনগুলো ড্র্যাগ এবং ড্রপ করে সাজান</p>
+                </div>
+                <div class="page-builder-container">
+                    <div class="section-list">
+                        <h3>পেজ সেকশন</h3>
+                        <p class="instruction">সেকশনগুলো টেনে নিয়ে ক্রম পরিবর্তন করুন</p>
+                        <ul id="section-list" class="draggable-sections"></ul>
+                    </div>
+                    <div class="section-settings">
+                        <h3>সেকশন সেটিংস</h3>
+                        <div id="section-settings-panel">
+                            <p class="empty-state">একটি সেকশন নির্বাচন করুন</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn-success" onclick="saveSectionOrder()">
+                        <i class="fas fa-save"></i> সেকশন অর্ডার সেভ করুন
+                    </button>
+                </div>
+            </section>
+
+            <!-- Content Editor Section (existing) -->
+            <section id="content-editor-section" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-edit"></i> কন্টেন্ট এডিটর</h2>
+                    <p>ল্যান্ডিং পেজের কন্টেন্ট সম্পাদনা করুন</p>
+                </div>
+                <div class="content-editor-container">
+                    <div class="content-tabs">
+                        <button class="tab-btn active" data-tab="hero-editor">হিরো সেকশন</button>
+                        <button class="tab-btn" data-tab="features-editor">ফিচার্স</button>
+                        <button class="tab-btn" data-tab="gallery-editor">গ্যালারি</button>
+                        <button class="tab-btn" data-tab="notices-editor">নোটিশ বোর্ড</button>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <div id="hero-editor" class="tab-panel active">
+                            <h3>হিরো সেকশন সম্পাদনা</h3>
+                            <form id="hero-form" class="editor-form">
+                                <div class="form-group">
+                                    <label>হেডলাইন</label>
+                                    <input type="text" id="hero-title" placeholder="স্কুলের নাম">
+                                </div>
+                                <div class="form-group">
+                                    <label>সাব-হেডলাইন</label>
+                                    <textarea id="hero-subtitle" rows="2" placeholder="স্লোগান"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>বাটন টেক্সট</label>
+                                    <input type="text" id="hero-btn-text" placeholder="ভর্তি হোন">
+                                </div>
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-save"></i> সেভ করুন
+                                </button>
+                            </form>
+                        </div>
+
+                        <div id="features-editor" class="tab-panel">
+                            <h3>ফিচার্স সম্পাদনা</h3>
+                            <div id="features-list" class="features-edit-list"></div>
+                            <button class="btn-secondary" onclick="addFeature()">
+                                <i class="fas fa-plus"></i> নতুন ফিচার যোগ করুন
+                            </button>
+                        </div>
+
+                        <div id="gallery-editor" class="tab-panel">
+                            <h3>গ্যালারি সম্পাদনা</h3>
+                            <div class="gallery-upload-section">
+                                <div class="upload-zone" id="gallery-upload-zone">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>ছবি আপলোড করুন</p>
+                                    <input type="file" id="gallery-upload" multiple accept="image/*" hidden>
+                                </div>
+                            </div>
+                            <div id="gallery-images-list" class="gallery-edit-grid"></div>
+                        </div>
+
+                        <div id="notices-editor" class="tab-panel">
+                            <h3>নোটিশ বোর্ড সম্পাদনা</h3>
+                            <form id="add-notice-form">
+                                <div class="form-group">
+                                    <label>নোটিশ শিরোনাম</label>
+                                    <input type="text" id="notice-title" placeholder="শিরোনাম" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>বিবরণ</label>
+                                    <textarea id="notice-description" rows="3" placeholder="বিবরণ"></textarea>
+                                </div>
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-plus"></i> নোটিশ যোগ করুন
+                                </button>
+                            </form>
+                            <div id="notices-list" class="notices-edit-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Landing Settings Section (existing) -->
+            <section id="landing-settings-section" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-cogs"></i> ল্যান্ডিং সেটিংস</h2>
+                    <p>স্কুলের মূল তথ্য এবং সেটিংস পরিচালনা করুন</p>
+                </div>
+                <div class="settings-container">
+                    <form id="school-info-form" class="settings-form">
+                        <div class="form-section">
+                            <h3>স্কুলের মূল তথ্য</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>স্কুলের নাম</label>
+                                    <input type="text" id="school-name" placeholder="স্কুলের পূর্ণ নাম">
+                                </div>
+                                <div class="form-group">
+                                    <label>স্লোগান/ট্যাগলাইন</label>
+                                    <input type="text" id="school-tagline" placeholder="স্কুলের স্লোগান">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>ঠিকানা</label>
+                                    <textarea id="school-address" rows="2" placeholder="সম্পূর্ণ ঠিকানা"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>ফোন নম্বর</label>
+                                    <input type="tel" id="school-phone" placeholder="+৮৮০১২৩৪৫৬৭৮৯০">
+                                </div>
+                                <div class="form-group">
+                                    <label>ইমেইল</label>
+                                    <input type="email" id="school-email" placeholder="info@school.edu.bd">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-save"></i> সেটিংস সেভ করুন
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Full Menu Section -->
+            <section id="full-menu-section" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-th-large"></i> সম্পূর্ণ মেনু সিস্টেম</h2>
+                    <p>স্কুল ম্যানেজমেন্টের সমস্ত মেনু এবং সাব-মেনুতে ক্লিক করে সরাসরি যান</p>
+                </div>
+                <div class="full-menu-container">
+                    <!-- Dashboard -->
+                    <div class="menu-category">
+                        <h3><i class="fas fa-home"></i> ড্যাশবোর্ড</h3>
+                        <ul class="submenu-list">
+                            <li><a href="admin/admin-dashboard.html"><i class="fas fa-chart-pie"></i> সারসংক্ষেপ</a></li>
+                            <li><a href="admin/admin-attendance.html"><i class="fas fa-calendar-check"></i> আজকের উপস্থিতি</a></li>
+                            <li><a href="admin/admin-notifications.html"><i class="fas fa-bullhorn"></i> নোটিশ বোর্ড</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Students -->
+                    <div class="menu-category">
+                        <h3><i class="fas fa-user-graduate"></i> শিক্ষার্থী</h3>
+                        <ul class="submenu-list">
+                            <li><a href="admin/admin-students.html"><i class="fas fa-list"></i> শিক্ষার্থী তালিকা</a></li>
+                            <li><a href="admin/admin-students.html" onclick="showAddStudentModal(); return false;"><i class="fas fa-user-plus"></i> নতুন শিক্ষার্থী যোগ</a></li>
+                            <li><a href="admin/admin-students.html"><i class="fas fa-id-card"></i> শিক্ষার্থী আইডি কার্ড</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Teachers -->
+                    <div class="menu-category">
+                        <h3><i class="fas fa-chalkboard-teacher"></i> শিক্ষক</h3>
+                        <ul class="submenu-list">
+                            <li><a href="admin/admin-teachers.html"><i class="fas fa-list"></i> শিক্ষক তালিকা</a></li>
+                            <li><a href="admin/admin-teachers.html" onclick="showAddTeacherModal(); return false;"><i class="fas fa-user-plus"></i> নতুন শিক্ষক যোগ</a></li>
+                            <li><a href="admin/admin-teachers.html"><i class="fas fa-id-badge"></i> শিক্ষক প্রোফাইল</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Attendance -->
+                    <div class="menu-category">
+                        <h3><i class="fas fa-calendar-check"></i> উপস্থিতি</h3>
+                        <ul class="submenu-list">
+                            <li><a href="admin/admin-attendance.html?type=student"><i class="fas fa-user-check"></i> শিক্ষার্থী উপস্থিতি</a></li>
+                            <li><a href="admin/admin-attendance.html?type=teacher"><i class="fas fa-chalkboard-teacher"></i> শিক্ষক উপস্থিতি</a></li>
+                            <li><a href="admin/admin-attendance.html?report=true"><i class="fas fa-chart-bar"></i> উপস্থিতি রিপোর্ট</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Fees -->
+                    <div class="menu-category">
+                        <h3><i class="fas fa-money-bill-wave"></i> ফি ম্যানেজমেন্ট</h3>
+                        <ul class="submenu-list">
+                            <li><a href="admin/admin-fees.html?tab=fee-collection"><i class="fas fa-hand-holding-money"></i> ফি কালেকশন</a></li>
+                            <li><a href="admin/admin-fees.html?tab=due-fees"><i class="fas fa-exclamation-circle"></i> বকেয়া ফি</a></li>
+                            <li><a href="admin/admin-fees.html?tab=fee-reports"><i class="fas fa-file-invoice-dollar"></i> ফি রিপোর্ট</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Exams & Results -->
+                    <div class="menu-category">
+                        <h3><i class="fas fa-clipboard-list"></i> পরীক্ষা ও ফলাফল</h3>
+                        <ul class="submenu-list">
+                            <li><a href="admin/admin-exams.html?tab=exam-schedule"><i class="fas fa-calendar-alt"></i> পরীক্ষার সময়সূচি</a></li>
+                            <li><a href="admin/admin-exams.html?tab=marks-entry"><i class="fas fa-pen"></i> নম্বর এন্ট্রি</a></li>
+                            <li><a href="admin/admin-results.html"><i class="fas fa-graduation-cap"></i> ফলাফল</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Payments -->
+                    <div class="menu-category">
+                        <h3><i class="fas fa-credit-card"></i> অনলাইন পেমেন্ট</h3>
+                        <ul class="submenu-list">
+                            <li><a href="admin/admin-payments.html?tab=pending"><i class="fas fa-clock"></i> পেন্ডিং পেমেন্ট</a></li>
+                            <li><a href="admin/admin-payments.html?tab=history"><i class="fas fa-history"></i> লেনদেন ইতিহাস</a></li>
+                            <li><a href="admin/admin-payments.html?tab=gateways"><i class="fas fa-gateway"></i> পেমেন্ট গেটওয়ে</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Notifications -->
+                    <div class="menu-category">
+                        <h3><i class="fas fa-bell"></i> নোটিফিকেশন</h3>
+                        <ul class="submenu-list">
+                            <li><a href="admin/admin-notifications.html?tab=compose"><i class="fas fa-pen-nib"></i> নোটিফিকেশন লিখুন</a></li>
+                            <li><a href="admin/admin-notifications.html?tab=history"><i class="fas fa-history"></i> নোটিফিকেশন ইতিহাস</a></li>
+                            <li><a href="admin/admin-notifications.html?tab=templates"><i class="fas fa-file-alt"></i> টেমপ্লেট</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Settings -->
+                    <div class="menu-category">
+                        <h3><i class="fas fa-cogs"></i> সেটিংস</h3>
+                        <ul class="submenu-list">
+                            <li><a href="admin/admin-settings.html?tab=general"><i class="fas fa-sliders-h"></i> সাধারণ সেটিংস</a></li>
+                            <li><a href="admin/admin-settings.html?tab=academic"><i class="fas fa-book"></i> একাডেমিক সেটিংস</a></li>
+                            <li><a href="admin/admin-settings.html?tab=users"><i class="fas fa-users-cog"></i> ইউজার ম্যানেজমেন্ট</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Preview Section (existing) -->
+            <section id="preview-section" class="admin-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-eye"></i> সাইট প্রিভিউ</h2>
+                    <p>আপনার ওয়েবসাইটের প্রিভিউ দেখুন</p>
+                </div>
+                <div class="preview-container">
+                    <div class="preview-frame">
+                        <div class="preview-browser">
+                            <div class="browser-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="browser-url">পাঠশালা ই-ম্যানেজার</span>
+                            </div>
+                            <div class="browser-content" id="preview-content"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ==================== MODALS ==================== -->
+    
+    <!-- Add/Edit Student Modal -->
+    <div id="student-modal" class="modal">
+        <div class="modal-content student-modal">
+            <div class="modal-header">
+                <h3>নতুন শিক্ষার্থী যোগ করুন</h3>
+                <button class="modal-close" onclick="closeModal('student-modal')">&times;</button>
+            </div>
+            <form id="student-form">
+                <input type="hidden" id="student-id">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>শিক্ষার্থীর নাম *</label>
+                        <input type="text" id="student-name" required placeholder="পূর্ণ নাম">
+                    </div>
+                    <div class="form-group">
+                        <label>রোল নম্বর *</label>
+                        <input type="text" id="student-roll" required placeholder="০১">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>শ্রেণি *</label>
+                        <select id="student-class" required>
+                            <option value="">শ্রেণি নির্বাচন করুন</option>
+                            <option value="৬ষ্ঠ">৬ষ্ঠ শ্রেণি</option>
+                            <option value="৭ম">৭ম শ্রেণি</option>
+                            <option value="৮ম">৮ম শ্রেণি</option>
+                            <option value="৯ম">৯ম শ্রেণি</option>
+                            <option value="১০ম">১০ম শ্রেণি</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>শাখা</label>
+                        <select id="student-section">
+                            <option value="ক">ক</option>
+                            <option value="খ">খ</option>
+                            <option value="গ">গ</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>মোবাইল নম্বর</label>
+                        <input type="tel" id="student-phone" placeholder="+৮৮০১৭XXXXXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label>ইমেইল</label>
+                        <input type="email" id="student-email" placeholder="email@example.com">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>অভিভাবকের নাম *</label>
+                    <input type="text" id="student-guardian" required placeholder="বাবা/মায়ের নাম">
+                </div>
+                <div class="form-group">
+                    <label>অভিভাবকের ফোন *</label>
+                    <input type="tel" id="student-guardian-phone" required placeholder="+৮৮০১৭XXXXXXXX">
+                </div>
+                <div class="form-group">
+                    <label>ঠিকানা</label>
+                    <textarea id="student-address" rows="2" placeholder="সম্পূর্ণ ঠিকানা"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>ছবি</label>
+                    <input type="file" id="student-photo" accept="image/*">
+                    <div id="student-photo-preview" class="image-preview"></div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('student-modal')">বাতিল</button>
+                    <button type="submit" class="btn-primary">সেভ করুন</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add/Edit Teacher Modal -->
+    <div id="teacher-modal" class="modal">
+        <div class="modal-content teacher-modal">
+            <div class="modal-header">
+                <h3>নতুন শিক্ষক যোগ করুন</h3>
+                <button class="modal-close" onclick="closeModal('teacher-modal')">&times;</button>
+            </div>
+            <form id="teacher-form">
+                <input type="hidden" id="teacher-id">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>শিক্ষকের নাম *</label>
+                        <input type="text" id="teacher-name" required placeholder="পূর্ণ নাম">
+                    </div>
+                    <div class="form-group">
+                        <label>বিষয় *</label>
+                        <select id="teacher-subject" required>
+                            <option value="">বিষয় নির্বাচন করুন</option>
+                            <option value="বাংলা">বাংলা</option>
+                            <option value="ইংরেজি">ইংরেজি</option>
+                            <option value="গণিত">গণিত</option>
+                            <option value="বিজ্ঞান">বিজ্ঞান</option>
+                            <option value="সামাজিক বিজ্ঞান">সামাজিক বিজ্ঞান</option>
+                            <option value="ধর্ম">ধর্ম</option>
+                            <option value="শারীরিক শিক্ষা">শারীরিক শিক্ষা</option>
+                            <option value="চারুকলা">চারুকলা</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>যোগাযোগ নম্বর *</label>
+                        <input type="tel" id="teacher-phone" required placeholder="+৮৮০১৭XXXXXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label>ইমেইল</label>
+                        <input type="email" id="teacher-email" placeholder="email@example.com">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>যোগ্যতা</label>
+                    <input type="text" id="teacher-qualification" placeholder="যেমন: M.A., B.Ed.">
+                </div>
+                <div class="form-group">
+                    <label>ঠিকানা</label>
+                    <textarea id="teacher-address" rows="2" placeholder="সম্পূর্ণ ঠিকানা"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>ছবি</label>
+                    <input type="file" id="teacher-photo" accept="image/*">
+                    <div id="teacher-photo-preview" class="image-preview"></div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal('teacher-modal')">বাতিল</button>
+                    <button type="submit" class="btn-primary">সেভ করুন</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content payment-modal">
+            <div class="modal-header">
+                <h3>অনলাইন পেমেন্ট</h3>
+                <button class="modal-close" onclick="closeModal('payment-modal')">&times;</button>
+            </div>
+            <div class="payment-details" id="payment-details">
+                <!-- Payment details will be shown here -->
+            </div>
+            <div class="payment-methods">
+                <h4>পেমেন্ট মেথড নির্বাচন করুন</h4>
+                <div class="method-options">
+                    <label class="method-option">
+                        <input type="radio" name="payment-method" value="bkash" checked>
+                        <span class="method-logo">bKash</span>
+                    </label>
+                    <label class="method-option">
+                        <input type="radio" name="payment-method" value="nagad">
+                        <span class="method-logo">Nagad</span>
+                    </label>
+                </div>
+            </div>
+            <div class="payment-form">
+                <div class="form-group">
+                    <label>মোবাইল নম্বর</label>
+                    <input type="tel" id="payment-phone" placeholder="+৮৮০১৭XXXXXXXX">
+                </div>
+                <div class="form-group">
+                    <label>পিন নম্বর</label>
+                    <input type="password" id="payment-pin" placeholder="৪ ডিজিট পিন">
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" onclick="closeModal('payment-modal')">বাতিল</button>
+                <button type="button" class="btn-success" onclick="processPayment()">
+                    <i class="fas fa-credit-card"></i> পেমেন্ট করুন
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student ID Card Modal -->
+    <div id="idcard-modal" class="modal">
+        <div class="modal-content idcard-modal">
+            <div class="modal-header">
+                <h3>শিক্ষার্থী আইডি কার্ড</h3>
+                <button class="modal-close" onclick="closeModal('idcard-modal')">&times;</button>
+            </div>
+            <div id="idcard-preview" class="idcard-preview">
+                <!-- ID Card will be rendered here -->
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" onclick="closeModal('idcard-modal')">বন্ধ করুন</button>
+                <button type="button" class="btn-primary" onclick="printIDCard()">
+                    <i class="fas fa-print"></i> প্রিন্ট করুন
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content login-modal">
+            <div class="login-header">
+                <img src="assets/logo.png" alt="Logo">
+                <h2>অ্যাডমিন লগইন</h2>
+                <p>স্কুল ম্যানেজমেন্ট সিস্টেম</p>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label>ব্যবহারকারীর নাম</label>
+                    <input type="text" id="login-username" placeholder="অ্যাডমিন ইউজারনেম" required>
+                </div>
+                <div class="form-group">
+                    <label>পাসওয়ার্ড</label>
+                    <input type="password" id="login-password" placeholder="পাসওয়ার্ড" required>
+                </div>
+                <button type="submit" class="btn-login-submit">
+                    <i class="fas fa-sign-in-alt"></i> লগইন করুন
+                </button>
+                <p class="login-hint">ডিফল্ট: admin / admin123</p>
+            </form>
+            <button class="modal-close" onclick="hideAdminLogin()">&times;</button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast-container"></div>
+
+    <!-- Print Styles -->
+    <style>
+        @media print {
+            .admin-sidebar,
+            .admin-topbar,
+            .modal,
+            #toast-container,
+            .btn-primary,
+            .btn-secondary,
+            .btn-success,
+            .action-bar,
+            .modal-actions {
+                display: none !important;
+            }
+            
+            #admin-main {
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            .admin-section {
+                display: block !important;
+                padding: 0 !important;
+            }
+            
+            .idcard-print {
+                width: 3.375in;
+                height: 2.125in;
+                border: 2px solid #00695C;
+                border-radius: 8px;
+                padding: 15px;
+                page-break-inside: avoid;
+                background: white;
+            }
+            
+            .marksheet-print {
+                width: 100%;
+                max-width: 210mm;
+                min-height: 297mm;
+                border: 2px solid #00695C;
+                padding: 20mm;
+                page-break-inside: avoid;
+            }
+        }
+        
+        .idcard-print {
+            width: 3.375in;
+            height: 2.125in;
+            border: 2px solid #00695C;
+            border-radius: 8px;
+            padding: 15px;
+            background: linear-gradient(135deg, #00695C, #004D40);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .idcard-print::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .idcard-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .idcard-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            padding: 5px;
+        }
+        
+        .idcard-school-name {
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .idcard-photo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin: 10px auto;
+            display: block;
+            object-fit: cover;
+        }
+        
+        .idcard-info {
+            text-align: center;
+            font-size: 11px;
+        }
+        
+        .idcard-info h4 {
+            margin: 5px 0 2px;
+            font-size: 13px;
+        }
+        
+        .idcard-footer {
+            position: absolute;
+            bottom: 10px;
+            left: 15px;
+            right: 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 9px;
+        }
+    </style>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/render.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
